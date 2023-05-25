@@ -1,0 +1,41 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>org.jetbrains.plugins.template</id>
+    <name>IntelliJ Platform Plugin Template</name>
+    <vendor>JetBrains</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+<!--        <typedHandler implementation="org.intellij.sdk.editor.MyTypedHandler"/>-->
+<!--        <completion.plainTextSymbol language="TEXT" implementationClass="org.intellij.sdk.editor.VcsCommitMessageCompletion"/>-->
+        <completion.contributor language="TEXT" implementationClass="org.intellij.sdk.editor.MyVcsCommitMessageCompletionContributor"
+                                order="first, before liveTemplates, before commitCompletion"/>
+    </extensions>
+
+    <actions>
+        <action id="EditorBasics.EditorIllustrationAction"
+                class="org.intellij.sdk.editor.EditorIllustrationAction"
+                text="Editor Replace Text"
+                description="Replaces selected text with 'Replacement'."
+                icon="SdkIcons.Sdk_default_icon">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action id="EditorBasics.EditorHandlerIllustration"
+                class="org.intellij.sdk.editor.EditorHandlerIllustration"
+                text="Editor Add Caret"
+                description="Adds a second caret below the existing one."
+                icon="SdkIcons.Sdk_default_icon">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <!-- Place this entry first in the popup menu; it's always enabled if a project and editor are open -->
+<!--        <action id="EditorBasics.LogicalPositionIllustration"-->
+<!--                class="org.intellij.sdk.editor.EditorAreaIllustration"-->
+<!--                text="Caret Position"-->
+<!--                description="Reports information about the caret position."-->
+<!--                icon="SdkIcons.Sdk_default_icon">-->
+<!--            <keyboard-shortcut keymap="$default" first-keystroke="control alt G"/>-->
+<!--            <add-to-group group-id="EditorPopupMenu" anchor="first"/>-->
+<!--        </action>-->
+    </actions>
+</idea-plugin>
