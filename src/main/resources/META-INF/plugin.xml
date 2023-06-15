@@ -1,41 +1,37 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-    <name>IntelliJ Platform Plugin Template</name>
-    <vendor>JetBrains</vendor>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.timevale.CommitMessagePlugin</id>
 
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>CommitMessagePlugin</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="shanluo@tsign.com" url="https://www.yourcompany.com">timevale</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    这是一个名为 "TimevaleCommit" 的 IntelliJ IDEA 插件，它可以帮助您更轻松地编写规范的 Git 提交信息。该插件提供了两个主要功能：
+
+自动提示 commit message 前缀：您可以使用预定义的前缀，例如 "feat"、"fix"、"docs" 等，来标识您的提交类型。这有助于您更好地组织和管理提交历史，方便代码审核、版本控制和错误跟踪等活动。
+
+与公司产研系统的集成：您可以使用该插件连接您的公司产研系统，并输入关键字，获取与您正在处理的任务或缺陷相关的信息。这有助于您更好地了解当前的任务上下文，并编写更具体、更有意义的提交信息。
+
+通过使用 TimevaleCommit，您可以提高提交信息的质量和效率，从而更好地管理和维护您的代码库。如果您有任何疑问，可以联系shanluo
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-<!--        <typedHandler implementation="org.intellij.sdk.editor.MyTypedHandler"/>-->
-<!--        <completion.plainTextSymbol language="TEXT" implementationClass="org.intellij.sdk.editor.VcsCommitMessageCompletion"/>-->
-        <completion.contributor language="TEXT" implementationClass="org.intellij.sdk.editor.MyVcsCommitMessageCompletionContributor"
+        <completion.contributor language="TEXT" implementationClass="com.timevale.commitmessageplugin.MyVcsCommitMessageCompletionContributor"
                                 order="first, before liveTemplates, before commitCompletion"/>
+        <notificationGroup displayType="BALLOON" id="commitMessagePlugin.balloon" isLogByDefault="false"/>
     </extensions>
-
-    <actions>
-        <action id="EditorBasics.EditorIllustrationAction"
-                class="org.intellij.sdk.editor.EditorIllustrationAction"
-                text="Editor Replace Text"
-                description="Replaces selected text with 'Replacement'."
-                icon="SdkIcons.Sdk_default_icon">
-            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-        </action>
-        <action id="EditorBasics.EditorHandlerIllustration"
-                class="org.intellij.sdk.editor.EditorHandlerIllustration"
-                text="Editor Add Caret"
-                description="Adds a second caret below the existing one."
-                icon="SdkIcons.Sdk_default_icon">
-            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-        </action>
-        <!-- Place this entry first in the popup menu; it's always enabled if a project and editor are open -->
-<!--        <action id="EditorBasics.LogicalPositionIllustration"-->
-<!--                class="org.intellij.sdk.editor.EditorAreaIllustration"-->
-<!--                text="Caret Position"-->
-<!--                description="Reports information about the caret position."-->
-<!--                icon="SdkIcons.Sdk_default_icon">-->
-<!--            <keyboard-shortcut keymap="$default" first-keystroke="control alt G"/>-->
-<!--            <add-to-group group-id="EditorPopupMenu" anchor="first"/>-->
-<!--        </action>-->
-    </actions>
 </idea-plugin>
